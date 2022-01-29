@@ -4,7 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Test/AndroidStudioProjects/Tring/app/src/main/res/drawable/splash_background.xml" value="0.15364583333333334" />
-        <entry key="..\:/Users/Test/AndroidStudioProjects/Tring/app/src/main/res/layout/activity_initial_user_info.xml" value="0.2" />
+        <entry key="..\:/Users/Test/AndroidStudioProjects/Tring/app/src/main/res/layout/activity_initial_user_info.xml" value="0.1" />
         <entry key="..\:/Users/Test/AndroidStudioProjects/Tring/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/Users/Test/AndroidStudioProjects/Tring/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/Test/AndroidStudioProjects/Tring/app/src/main/res/layout/activity_main_splash.xml" value="0.1375" />
@@ -12,13 +12,18 @@
         <entry key="..\:/Users/Test/AndroidStudioProjects/Tring/app/src/main/res/layout/activity_sign_up.xml" value="0.1" />
         <entry key="..\:/Users/Test/AndroidStudioProjects/Tring/app/src/main/res/layout/activity_trip_destination.xml" value="0.16979166666666667" />
         <entry key="..\:/Users/Test/AndroidStudioProjects/Tring/app/src/main/res/layout/activity_user_info_enter.xml" value="0.1375" />
+        <entry key="..\:/Users/Test/AndroidStudioProjects/Tring/app/src/main/res/layout/activity_user_photo_upload.xml" value="0.1" />
         <entry key="..\:/Users/Test/AndroidStudioProjects/Tring/app/src/main/res/layout/activity_verify_otpactivity.xml" value="0.264" />
+        <entry key="..\:/Users/Test/AndroidStudioProjects/Tring/app/src/main/res/layout/item_photo_userphoto.xml" value="0.18385416666666668" />
+        <entry key="..\:/Users/Test/AndroidStudioProjects/Tring/app/src/main/res/layout/item_region_city.xml" value="0.1" />
+        <entry key="..\:/Users/Test/AndroidStudioProjects/Tring/app/src/main/res/layout/item_region_subregion.xml" value="0.1" />
+        <entry key="..\:/Users/Test/AndroidStudioProjects/Tring/app/src/main/res/layout/item_region_tagbutton.xml" value="0.1359375" />
         <entry key="..\:/Users/Test/AndroidStudioProjects/Tring/app/src/main/res/layout/list_region.xml" value="0.19157608695652173" />
         <entry key="..\:/Users/Test/AndroidStudioProjects/Tring/app/src/main/res/layout/list_region_city.xml" value="0.19157608695652173" />
         <entry key="..\:/Users/Test/AndroidStudioProjects/Tring/app/src/main/res/layout/list_region_country.xml" value="0.23802083333333332" />
         <entry key="..\:/Users/Test/AndroidStudioProjects/Tring/app/src/main/res/layout/list_region_regionuser.xml" value="0.1" />
         <entry key="..\:/Users/Test/AndroidStudioProjects/Tring/app/src/main/res/layout/list_region_subregion.xml" value="0.1296875" />
-        <entry key="..\:/Users/Test/AndroidStudioProjects/Tring/app/src/main/res/layout/list_regioninfo_regionuser.xml" value="0.19791666666666666" />
+        <entry key="..\:/Users/Test/AndroidStudioProjects/Tring/app/src/main/res/layout/list_regioninfo_regionuser.xml" value="0.1" />
         <entry key="..\:/Users/Test/AndroidStudioProjects/Tring/app/src/main/res/layout/list_regioninfor_regionuser.xml" value="0.1" />
       </map>
     </option>

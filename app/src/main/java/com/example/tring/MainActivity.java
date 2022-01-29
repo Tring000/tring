@@ -24,9 +24,9 @@ public class MainActivity extends AppCompatActivity
 
         context=this;
 
-        FirebaseUser user=auth.getCurrentUser();
+        //FirebaseUser user=auth.getCurrentUser();
         textView=findViewById(R.id.MainActivity_test);
-        textView.setText(user.getEmail());
+        textView.setText("MainScreen");
 
 
     }

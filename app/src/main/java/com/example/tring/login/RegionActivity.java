@@ -1,15 +1,12 @@
 package com.example.tring.login;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -31,17 +28,17 @@ public class RegionActivity extends AppCompatActivity implements RegionAdapter.I
     private int requestCode;
     private String listType;
 
-    private List<String> userRegionList;
     private List<String> list_City;
     private List<String> list_SubRegion;
+    private List<String> list_Selected;
 
     private RecyclerView recyclerView_City;
     private RecyclerView recyclerView_SubRegion;
-    private RecyclerView recyclerView_UserRegion;
+    private RecyclerView recyclerView_Selected;
 
     private RegionAdapter adapter_City;
     private RegionAdapter adapter_SubRegion;
-    private RegionAdapter adapter_UserRegion;
+    private RegionAdapter adapter_Selected;
 
     private Button btn_Ok;
     @Override
@@ -57,17 +54,17 @@ public class RegionActivity extends AppCompatActivity implements RegionAdapter.I
 
 
 
-        userRegionList=new ArrayList<>();
+        list_Selected =new ArrayList<>();
         list_City= new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.array_city)));
 
 
         recyclerView_City=findViewById(R.id.RegionActivity_RecyclerView_City);
         recyclerView_SubRegion=findViewById(R.id.RegionActivity_RecyclerView_SubRegion);
-        recyclerView_UserRegion=findViewById(R.id.RegionActivity_RecyclerView_UserRegion);
+        recyclerView_Selected =findViewById(R.id.RegionActivity_RecyclerView_Selected);
 
         recyclerView_City.setLayoutManager(new LinearLayoutManager(this));
         recyclerView_SubRegion.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView_UserRegion.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
+        recyclerView_Selected.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
 
         adapter_City= new RegionAdapter(context, list_City,this,"city");
         recyclerView_City.setAdapter(adapter_City);
@@ -78,13 +75,13 @@ public class RegionActivity extends AppCompatActivity implements RegionAdapter.I
             @Override
             public void onClick(View view)
             {
-                if(userRegionList.isEmpty())
+                if(list_Selected.isEmpty())
                 {
                     Toast.makeText(context, "Please select your main region ", Toast.LENGTH_SHORT).show();
                 }
-                if (listType=="subregion")
+                if (requestCode==100)
                 {
-                    intent.putStringArrayListExtra("list", (ArrayList<String>) userRegionList);
+                    intent.putStringArrayListExtra("list", (ArrayList<String>) list_Selected);
                     setResult(101, intent);
 
                     list_City.clear();
@@ -92,9 +89,9 @@ public class RegionActivity extends AppCompatActivity implements RegionAdapter.I
 
                     finish();
                 }
-                if (listType=="destination")
+                if (requestCode==200)
                 {
-                    intent.putStringArrayListExtra("list", (ArrayList<String>) userRegionList);
+                    intent.putStringArrayListExtra("list", (ArrayList<String>) list_Selected);
                     setResult(201, intent);
 
                     list_City.clear();
@@ -111,7 +108,6 @@ public class RegionActivity extends AppCompatActivity implements RegionAdapter.I
     {
         this.listType=_listType;
 
-        Toast.makeText(context, "onItemClick_"+_listType, Toast.LENGTH_SHORT).show();
 
         if (listType=="city")
         {
@@ -120,57 +116,50 @@ public class RegionActivity extends AppCompatActivity implements RegionAdapter.I
 
             list_SubRegion= new ArrayList<String>(Arrays.asList(getResources().getStringArray(resourceId)));
 
-            if (requestCode==100)
-            {
-                adapter_SubRegion=new RegionAdapter(context,list_SubRegion,this,"subregion");
-                recyclerView_SubRegion.setAdapter(adapter_SubRegion);
-            }
-            if (requestCode==200)
-            {
-                adapter_SubRegion=new RegionAdapter(context,list_SubRegion,this,"destination");
-                recyclerView_SubRegion.setAdapter(adapter_SubRegion);
-            }
-        }
-        else if (listType=="subregion")
-        {
-            if (!userRegionList.contains(list_SubRegion.get(position)) && userRegionList.size()<2)
-            {
-                userRegionList.add(list_SubRegion.get(position));
+            adapter_SubRegion=new RegionAdapter(context,list_SubRegion,this,"subregion");
+            recyclerView_SubRegion.setAdapter(adapter_SubRegion);
 
-                adapter_UserRegion=new RegionAdapter(context,userRegionList,this,"userRegion");
-                recyclerView_UserRegion.setAdapter(adapter_UserRegion);
+        }
+        else if (listType=="subregion" && requestCode==100 )
+        {
+            if (!list_Selected.contains(list_SubRegion.get(position)) && list_Selected.size()<2)
+            {
+                list_Selected.add(list_SubRegion.get(position));
+
+                adapter_Selected =new RegionAdapter(context, list_Selected,this,"selected");
+                recyclerView_Selected.setAdapter(adapter_Selected);
             }
-            else if(!userRegionList.contains(list_SubRegion.get(position)) &&userRegionList.size()>=2)
+            else if(!list_Selected.contains(list_SubRegion.get(position)) && list_Selected.size()>=2)
             {
                 Toast.makeText(context, "Max:2", Toast.LENGTH_SHORT).show();
             }
             else
             {
-                userRegionList.remove(list_SubRegion.get(position));
+                list_Selected.remove(list_SubRegion.get(position));
 
-                adapter_UserRegion=new RegionAdapter(context,userRegionList,this,"userRegion");
-                recyclerView_UserRegion.setAdapter(adapter_UserRegion);
+                adapter_Selected =new RegionAdapter(context, list_Selected,this,"selected");
+                recyclerView_Selected.setAdapter(adapter_Selected);
             }
         }
-        else if (listType=="destination")
+        else if (listType=="subregion" && requestCode == 200)
         {
-            if (!userRegionList.contains(list_SubRegion.get(position)) && userRegionList.size()<4)
+            if (!list_Selected.contains(list_SubRegion.get(position)) && list_Selected.size()<4)
             {
-                userRegionList.add(list_SubRegion.get(position));
+                list_Selected.add(list_SubRegion.get(position));
 
-                adapter_UserRegion=new RegionAdapter(context,userRegionList,this,"destination");
-                recyclerView_UserRegion.setAdapter(adapter_UserRegion);
+                adapter_Selected =new RegionAdapter(context, list_Selected,this,"selected");
+                recyclerView_Selected.setAdapter(adapter_Selected);
             }
-            else if(!userRegionList.contains(list_SubRegion.get(position)) &&userRegionList.size()>=4)
+            else if(!list_Selected.contains(list_SubRegion.get(position)) && list_Selected.size()>=4)
             {
                 Toast.makeText(context, "Max:4", Toast.LENGTH_SHORT).show();
             }
             else
             {
-                userRegionList.remove(list_SubRegion.get(position));
+                list_Selected.remove(list_SubRegion.get(position));
 
-                adapter_UserRegion=new RegionAdapter(context,userRegionList,this,"destination");
-                recyclerView_UserRegion.setAdapter(adapter_UserRegion);
+                adapter_Selected =new RegionAdapter(context, list_Selected,this,"selected");
+                recyclerView_Selected.setAdapter(adapter_Selected);
             }
         }
        // Toast.makeText(RegionActivity.this, "item clicked", Toast.LENGTH_SHORT).show();

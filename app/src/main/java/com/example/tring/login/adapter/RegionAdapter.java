@@ -28,7 +28,6 @@ public class RegionAdapter extends RecyclerView.Adapter<RegionAdapter.ViewHolder
 
     public RegionAdapter(Context context, List<String> list, ItemClickListener listener, String listType)
     {
-        Log.d("RegionAdapter_TAG",list.toString());
         this.inflater=LayoutInflater.from(context);
         this.list = list;
         this.listener=listener;
@@ -43,25 +42,20 @@ public class RegionAdapter extends RecyclerView.Adapter<RegionAdapter.ViewHolder
         if (listType=="city")
         {
              view = inflater
-                    .inflate(R.layout.list_region_city,parent,false);
+                    .inflate(R.layout.item_region_city,parent,false);
 
         }
         else if (listType=="subregion")
         {
              view = inflater
-                    .inflate(R.layout.list_region_subregion,parent,false);
+                    .inflate(R.layout.item_region_subregion,parent,false);
 
         }
-        else if (listType=="userRegion"|| listType=="destination")
+        else if (listType=="selected")
         {
             view = inflater
-                    .inflate(R.layout.list_region_regionuser,parent,false);
+                    .inflate(R.layout.item_region_selected,parent,false);
 
-        }
-        else if (listType=="userRegionInfo" )
-        {
-            view = inflater
-                    .inflate(R.layout.list_regioninfo_regionuser,parent,false);
         }
         else
         {
@@ -93,13 +87,11 @@ public class RegionAdapter extends RecyclerView.Adapter<RegionAdapter.ViewHolder
 
             this.listener_ViewHolder=listener_ViewHolder;
             if (listType=="city")
-                textView_region=itemView.findViewById(R.id.list_item_region_city);
+                textView_region=itemView.findViewById(R.id.item_region_city);
             if (listType=="subregion")
-                textView_region=itemView.findViewById(R.id.list_item_region_subregion);
-            if (listType=="userRegion"|| listType=="destination")
-                textView_region=itemView.findViewById(R.id.list_item_region_regionuser);
-            if (listType=="userRegionInfo")
-                textView_region=itemView.findViewById(R.id.list_item_regionuser_regionuser);
+                textView_region=itemView.findViewById(R.id.item_region_subregion);
+            if (listType=="selected")
+                textView_region=itemView.findViewById(R.id.item_region_selected);
             //if (listType=="destination")
               //  textView_region=itemView.findViewById(R.id.list_item_regionuser_regionuser);
 
